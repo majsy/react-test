@@ -7,8 +7,7 @@ export default class TodoList extends React.Component {
         super();
 
         this.state = {
-            items: [{name: 'eat', id:0}, {name: 'party', id:1}, {name: 'sleep', id:2}, {name: 'run', id:3}],
-            value: ''
+            items: [{name: 'eat', id:0}, {name: 'party', id:1}, {name: 'sleep', id:2}, {name: 'run', id:3}]
         };
     }
     removeItem = (id) => {
@@ -16,15 +15,13 @@ export default class TodoList extends React.Component {
         items.splice(id, 1);
         this.setState({items: items})
     }
-    addItem = (e) => {
-        let addedItem = this.setState({value: e.target.value});
-        // let items = this.state.items;
-
-        console.log('add item' + addedItem);
+    addItem = (value) => {
+        let items = this.state.items;
+        items.push({name: value, id: items.length+1});
+        this.setState({items});
     }
-    handleSubmit = (e) => {
-        e.preventDefault();
-        this.addItem(e);
+    handleSubmit = (val) => {
+        this.addItem(val);
     }
     render() {
         let items = this.state.items.map((item)=> {
@@ -33,7 +30,7 @@ export default class TodoList extends React.Component {
         return (
             <div>
                 <ul>{items}</ul>
-                <TodoForm handleSubmit={this.handleSubmit} handleChange={this.handleChange} />
+                <TodoForm handleSubmit={this.handleSubmit} />
             </div>
         )
     }
