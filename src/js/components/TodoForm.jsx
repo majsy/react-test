@@ -1,9 +1,12 @@
 import React from 'react';
 
-export default class TodoInput extends React.Component {
+export default class TodoForm extends React.Component {
     render() {
         return (
-            <input type="text" value="text"/>
+            <form id="add-item" method="POST" action="/todo/add" onSubmit={this.props.handleSubmit} >
+                <input form="add-item" type="text" name="add_item" />
+                <button type="submit">+</button>
+            </form>
         )
     }
 }
