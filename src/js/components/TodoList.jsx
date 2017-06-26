@@ -1,14 +1,21 @@
 import React from 'react';
 import TodoItem from './TodoItem.jsx';
 import TodoForm from './TodoForm.jsx';
+import shortid from 'shortid';
 
 export default class TodoList extends React.Component {
     constructor() {
         super();
 
         this.state = {
-            items: [{name: 'eat', id:0}, {name: 'party', id:1}, {name: 'sleep', id:2}, {name: 'run', id:3}]
+            items: [
+                {name: 'eat', id: this.createId()}, {name: 'party', id: this.createId()},
+                {name: 'sleep', id: this.createId()}, {name: 'run', id: this.createId()}
+            ]
         };
+    }
+    createId = () => {
+        shortid.generate();
     }
     removeItem = (id) => {
         let items = this.state.items;
@@ -17,15 +24,15 @@ export default class TodoList extends React.Component {
     }
     addItem = (value) => {
         let items = this.state.items;
-        items.push({name: value, id: items.length+1});
+        items.push({name: value, id: this.createId()});
         this.setState({items});
     }
     handleSubmit = (val) => {
         this.addItem(val);
     }
     render() {
-        let items = this.state.items.map((item)=> {
-            return <TodoItem item={item.name} key={item.id} handleClick={this.removeItem} />
+        let items = this.state.items.map((item, id)=> {
+            return <TodoItem item={item.name} key={id} handleClick={this.removeItem} />
         });
         return (
             <div>
