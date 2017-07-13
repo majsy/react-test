@@ -6,12 +6,12 @@ const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
     filename: 'index.html',
     inject: 'body'
 
-})
+});
 
 module.exports = {
     entry: './src/js/index.js',
     output: {
-        path: path.resolve(__dirname, './dist'),
+        path: path.resolve(__dirname + './dist'),
         filename: 'js/index.bundle.js'
     },
     module: {
@@ -21,5 +21,7 @@ module.exports = {
             { test: /\.scss$/, loader: 'sass-loader', exclude: /node_modules/ }
         ]
     },
-    plugins: [HtmlWebpackPluginConfig]
+    plugins: [
+        HtmlWebpackPluginConfig
+    ]
 }
