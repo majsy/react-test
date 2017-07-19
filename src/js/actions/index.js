@@ -1,9 +1,17 @@
-let nextTodoId = 0;
+let actions = {
+    addTodo: function(text) {
+        return {
+            type: 'ADD_TODO',
+            text
+        }
+    },
 
-export const addTodo = text => {
-    return {
-        type: 'ADD_TODO',
-        id: nextTodoId++,
-        text
+    removeTodo: function(id) {
+        return {
+            type: 'REMOVE_TODO',
+            id
+        }
     }
 }
+
+export default actions

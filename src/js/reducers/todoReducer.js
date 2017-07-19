@@ -1,17 +1,18 @@
-const todos = (state = [], action) => {
+export default function todoReducer(todos = [], action) {
     switch (action.type) {
         case 'ADD_TODO':
-            return [
-                ...state,
+            return [...todos,
                 {
                     id: action.id,
                     text: action.text,
                     completed: false
                 }
             ]
+        case 'REMOVE_TODO':
+            return todos.filter((todo) => {
+                return todo.id
+            })
         default:
-            return state
+            return todos;
     }
 }
-
-export default todos
