@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
 import TodoList from './TodoList.jsx';
@@ -11,7 +11,7 @@ class App extends React.Component {
         return (
             <div>
                 <TodoHeader />
-                <TodoList todos={this.props.todos}
+                <TodoList
                     removeTodo={this.props.actions.removeTodo}
                 />
                 <TodoForm addTodo={this.props.actions.addTodo} />
@@ -20,18 +20,13 @@ class App extends React.Component {
     }
 }
 
-App.propTypes = {
-    todos: PropTypes.array.isRequired,
-    actions: PropTypes.object.isRequired
-}
-
-function mapStateToProps(state) {
+const mapStateToProps = state => {
     return {
         todoReducer: state.todoReducer
     }
 }
 
-function mapDispatchToProps(dispatch) {
+const mapDispatchToProps = dispatch => {
     return {
         actions: bindActionCreators(actions, dispatch)
     }

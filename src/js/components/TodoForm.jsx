@@ -5,20 +5,20 @@ export default class TodoForm extends React.Component {
         super();
 
         this.state = {
-            text: this.props.text || ''
+            text: ''
         }
     }
 
     handleSubmit = (e) => {
         e.preventDefault();
-        let text = e.target.value.trim()
+        const text = this.state.text;
 
-
-        // this.props.dispatch(addTodo(text));
+        this.props.addTodo(text);
+        console.log(text);
     }
 
     handleChange = (e) => {
-        this.setState({text: e.target.value })
+        this.setState({text: e.target.value});
     }
 
     render() {

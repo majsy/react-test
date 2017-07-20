@@ -3,7 +3,7 @@ export default function todoReducer(todos = [], action) {
         case 'ADD_TODO':
             return [...todos,
                 {
-                    id: action.id,
+                    id: action.text,
                     text: action.text,
                     completed: false
                 }
