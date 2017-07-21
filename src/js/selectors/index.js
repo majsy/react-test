@@ -1,14 +1,11 @@
 import { createSelector } from 'reselect';
 
-const todos = state => state.todos
-const getTodos = () => {
-    return createSelector(
-        [todos],
-        (todos) => {
-            return todos
-        }
-    )
-}
+const getTodos = state => state.todos
 
-export default getTodos
+const getTodosState = createSelector(
+    [ getTodos ],
+    (todos) => todos
+)
 
+
+export default getTodosState

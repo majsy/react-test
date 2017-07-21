@@ -1,7 +1,9 @@
 import React from 'react';
 import TodoItem from './TodoItem.jsx';
-import getTodos from '../selectors';
+import getTodosState from '../selectors';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux'
+import removeTodo from '../actions';
 
 class TodoList extends React.Component {
     constructor() {
@@ -16,8 +18,7 @@ class TodoList extends React.Component {
     }
 
     render() {
-        // get the data from the getTodo selector
-        let todos = state.todos.map((item)=> {
+        let todos = this.state.todos.map((item)=> {
             return <TodoItem item={item.text} key={item.text} />
         })
         return (
@@ -32,10 +33,17 @@ class TodoList extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        todoReducer: getTodos(state)
+        todoReducer: getTodosState(state)
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        removeTodo: bindActionCreators(removeTodo, dispatch)
     }
 }
 
 export default connect(
-    mapStateToProps
+    mapStateToProps,
+    mapDispatchToProps()
 )(TodoList);

@@ -11,10 +11,8 @@ class App extends React.Component {
         return (
             <div>
                 <TodoHeader />
-                <TodoList
-                    removeTodo={this.props.actions.removeTodo}
-                />
-                <TodoForm addTodo={this.props.actions.addTodo} />
+                <TodoList />
+                <TodoForm />
             </div>
         );
     }

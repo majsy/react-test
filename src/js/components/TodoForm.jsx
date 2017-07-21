@@ -1,6 +1,9 @@
 import React from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import actions from '../actions';
 
-export default class TodoForm extends React.Component {
+class TodoForm extends React.Component {
     constructor() {
         super();
 
@@ -13,8 +16,14 @@ export default class TodoForm extends React.Component {
         e.preventDefault();
         const text = this.state.text;
 
-        this.props.addTodo(text);
+        let { dispatch } = this.props;
+        let action = actions.addTodo(text);
+        dispatch(action);
+
+        // this.props.actions(text);
+
         console.log(text);
+        this.setState({text: ''});
     }
 
     handleChange = (e) => {
@@ -33,3 +42,13 @@ export default class TodoForm extends React.Component {
         )
     }
 }
+
+const mapDispatchToProps = dispatch => {
+    return {
+        actions: bindActionCreators(actions, dispatch)
+    }
+}
+
+export default connect(
+    mapDispatchToProps
+)(TodoForm);
