@@ -1,30 +1,22 @@
 import React from 'react';
 import TodoItem from './TodoItem.jsx';
-import getTodosState from '../selectors';
+import {getTodosState} from '../selectors';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux'
-import removeTodo from '../actions';
 
 class TodoList extends React.Component {
-    constructor() {
-        super();
-
-        this.state = {
-            todos: [
-                {text: 'eat', id:this.text},
-                {text: 'sleep', id:this.text}
-            ]
-        }
-    }
-
     render() {
-        let todos = this.state.todos.map((item)=> {
-            return <TodoItem item={item.text} key={item.text} />
+        let {todos} = this.props;
+        if (!todos) {
+            return null;
+        }
+
+        let $todos = todos.map((item)=> {
+            return <TodoItem item={item.text} key={item.id} id={item.id} />
         })
         return (
             <div>
                 <ul>
-                    {todos}
+                    {$todos}
                 </ul>
             </div>
         )
@@ -33,17 +25,12 @@ class TodoList extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        todoReducer: getTodosState(state)
+        todos: getTodosState(state)
     }
 }
 
-const mapDispatchToProps = dispatch => {
-    return {
-        removeTodo: bindActionCreators(removeTodo, dispatch)
-    }
-}
 
 export default connect(
     mapStateToProps,
-    mapDispatchToProps()
+    null
 )(TodoList);

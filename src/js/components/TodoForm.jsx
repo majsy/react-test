@@ -16,11 +16,8 @@ class TodoForm extends React.Component {
         e.preventDefault();
         const text = this.state.text;
 
-        let { dispatch } = this.props;
-        let action = actions.addTodo(text);
-        dispatch(action);
-
-        // this.props.actions(text);
+        let { actions } = this.props;
+        actions.addTodo(text);
 
         console.log(text);
         this.setState({text: ''});
@@ -50,5 +47,6 @@ const mapDispatchToProps = dispatch => {
 }
 
 export default connect(
+    null,
     mapDispatchToProps
 )(TodoForm);

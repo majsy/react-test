@@ -1,11 +1,10 @@
 import { createSelector } from 'reselect';
 
-const getTodos = state => state.todos
+const getTodos = state => state.todoReducer
 
 const getTodosState = createSelector(
-    [ getTodos ],
-    (todos) => todos
+    getTodos,
+    todoReducer => todoReducer.todos
 )
 
-
-export default getTodosState
+export { getTodosState }
