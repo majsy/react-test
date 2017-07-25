@@ -11,7 +11,7 @@ class TodoList extends React.Component {
         }
 
         let $todos = todos.map((item)=> {
-            return <TodoItem item={item.text} key={item.id} id={item.id} />
+            return <TodoItem item={item} key={item.id} />
         })
         return (
             <div>
@@ -28,7 +28,6 @@ const mapStateToProps = state => {
         todos: getTodosState(state)
     }
 }
-
 
 export default connect(
     mapStateToProps,

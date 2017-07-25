@@ -1,4 +1,4 @@
-var initialData = {
+let initialData = {
     todos: [
         {
             id: '12ja74',
@@ -14,23 +14,18 @@ var initialData = {
 let todoReducer = (state = initialData, action) => {
     switch (action.type) {
         case 'ADD_TODO':
-            let {todos} = state;
+            let { todos } = state;
             const newTodos = [...todos,
                 {
                     id: Math.random().toString(36).substr(2, 7),
                     text: action.text
                 }
             ]
-
             return Object.assign({}, state, { todos: newTodos });
 
         case 'REMOVE_TODO':
-            return state;
-
-            // return todos.filter((todo) => {
-            //     return todo.id !== action.id
-            // })
-
+            todos = state.todos;
+            return Object.assign({}, state, { todos: todos.filter(todo => todo.id !== action.id) });
 
         default:
             return state;
