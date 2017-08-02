@@ -1,6 +1,6 @@
 import React from 'react';
-import TodoItem from './TodoItem.jsx';
-import {getTodosState} from '../selectors';
+import TodoItem from '../components/TodoItem.jsx';
+import {getFilteredTodos} from '../selectors/index';
 import { connect } from 'react-redux';
 
 class TodoList extends React.Component {
@@ -25,7 +25,7 @@ class TodoList extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        todos: getTodosState(state)
+        todos: getFilteredTodos(state)
     }
 }
 

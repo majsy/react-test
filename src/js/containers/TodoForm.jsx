@@ -1,7 +1,7 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import actions from '../actions';
+import actions from '../actions/index';
 
 class TodoForm extends React.Component {
     constructor() {
@@ -35,6 +35,10 @@ class TodoForm extends React.Component {
                     <input form="add-item" type="text" value={this.state.text} onChange={this.handleChange} />
                     <button type="submit">+</button>
                 </form>
+
+                <button onClick={() => this.props.actions.updateFilterType('SHOW_ALL')}>All</button>
+                <button onClick={() => this.props.actions.updateFilterType('SHOW_COMPLETED')}>Completed</button>
+                <button onClick={() => this.props.actions.updateFilterType('SHOW_ACTIVE')}>Active</button>
             </div>
         )
     }

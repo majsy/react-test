@@ -1,7 +1,7 @@
 import React from 'react';
-import TodoList from './TodoList.jsx';
+import TodoList from '../containers/TodoList.jsx';
 import TodoHeader from './TodoHeader.jsx';
-import TodoForm from './TodoForm.jsx';
+import TodoForm from '../containers/TodoForm.jsx';
 
 class App extends React.Component {
     render() {
