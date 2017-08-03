@@ -2,12 +2,6 @@ import { createSelector } from 'reselect';
 
 const getTodos = state => state.todoReducer
 
-
-const getTodosState = createSelector(
-    getTodos,
-    todoReducer => todoReducer.todos
-)
-
 let isValid = (type, todo) => {
   switch (type) {
       case 'SHOW_ALL':
@@ -25,4 +19,4 @@ const getFilteredTodos = createSelector(
     store => store.todos.filter(todo => isValid(store.filterType, todo))
 )
 
-export { getTodosState, getFilteredTodos }
+export { getFilteredTodos }
